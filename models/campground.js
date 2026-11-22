@@ -19,7 +19,7 @@ const CampSchema = new Schema({
 	},
 	location: {
 		type: String,
-		lowercase: true,
+		// lowercase: true,
 	},
 });
 

@@ -1,8 +1,18 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 
+mongoose
+	.connect('mongodb://localhost:27017/yelpCampApp')
+	.then(() => {
+		console.log('connection in mongodb open');
+	})
+	.catch(err => {
+		console.log('error failed on connection');
+		console.log(err);
+	});
+
 const app = express();
-const path = require('path');
 const methodOverride = require('method-override');
 
 app.use(methodOverride('_method'));
@@ -17,6 +27,8 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 // set the views directory to the views folder
 app.set('views', path.join(__dirname, '/views'));
+
+const Campground = require('./models/campground');
 
 app.get('/', (req, res) => {
 	res.render('./index', { page: 'YelpCamp' });

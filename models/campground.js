@@ -8,17 +8,18 @@ const CampSchema = new Schema({
 		// maxlength: 20,
 	},
 	price: {
-		type: Number,
+		type: String,
 		required: true,
-		min: [0, 'Price must be positive'],
+		// min: [0, 'Price must be positive'],
 	},
 	description: {
 		type: String,
-		required: true,
+		// required: true,
 		// maxlength: 20,
 	},
 	location: {
 		type: String,
+		required: true,
 		// lowercase: true,
 	},
 });

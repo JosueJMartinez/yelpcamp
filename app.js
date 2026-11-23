@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
+const { parsed } = require('dotenv').config();
 const mongoose = require('mongoose');
 const { states } = require('./seeds/seedHelpers');
 
 mongoose
-	.connect('mongodb://localhost:27017/yelpCampApp')
+	.connect(parsed.MONGODB_URI)
 	.then(() => {
 		console.log('connection in mongodb open');
 	})

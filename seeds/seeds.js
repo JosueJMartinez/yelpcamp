@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 const { places, descriptors } = require('./seedHelpers');
+const { parsed } = require('dotenv').config();
 const Campground = require('../models/campground');
 
 mongoose
-	.connect('mongodb://localhost:27017/yelpCampApp')
+	.connect(parsed.MONGODB_URI)
 	.then(() => {
 		console.log('connection in mongodb open');
 	})

@@ -34,6 +34,22 @@ app.get('/', (req, res) => {
 	res.render('./index', { page: 'YelpCamp' });
 });
 
+app.get('/campgrounds', async (req, res) => {
+	let campgrounds = await Campground.find({});
+	res.render('./campgrounds/', { page: 'Campgrounds', campgrounds });
+});
+
+app.get('/campgrounds/:id', async (req, res) => {
+	const { id } = req.params;
+	try {
+		const campground = await Campground.findById(id);
+		if (!campground) return res.redirect('/campgrounds');
+		res.render('./campgrounds/campground', { page: `Campground ${campground.name}`, campground });
+	} catch (e) {
+		res.redirect('/campgrounds');
+	}
+});
+
 app.listen(3000, () => {
 	console.log('app  is  listening on port 3000');
 });

@@ -1,0 +1,34 @@
+<%- include('../partials/header', { page }) %>
+<%- include('../partials/navbar') %>
+<div class="container">
+  <h1><%- page %> page</h1>
+
+  <div>
+
+    <div class="mt-5">
+      <% for(let i=0; i< 18; i=i+3 ){%>
+      <div class="row mb-5">
+        <% for(let j=i; j<i+3 && j<18 ;j++){ %>
+        <div class="col">
+          <a href=<%=`/campgrounds/${campgrounds[j].id}` %> class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title"><%= campgrounds[j].name %></h4>
+              <p class="card-text"><%= campgrounds[j].description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">$<%= campgrounds[j].price %></li>
+              <li class="list-group-item"><%= campgrounds[j].location %></li>
+            </ul>
+            <!-- <div class="card-body flex-row gap-4">
+              <a href="#">Card link</a>
+              <a href="#">Another link</a>
+            </div> -->
+          </a>
+        </div>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <%- include('../partials/footer') %>

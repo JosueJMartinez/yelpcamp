@@ -13,6 +13,8 @@ mongoose
 		console.log(err);
 	});
 
+const sample = array => array[Math.floor(Math.random() * array.length)];
+
 async function seed() {
 	try {
 		const deleted = await Campground.deleteMany({});
@@ -20,16 +22,16 @@ async function seed() {
 		console.log(deleted);
 		let seedData = [];
 		let dataNode = {};
-		let rand1, rand2, location;
+		let location;
 		for (let i = 0; i < 1000; i++) {
 			rand1 = Math.floor(Math.random() * 30);
 			rand2 = Math.floor(Math.random() * 30);
 			location = faker.location.postalAddress().split(/\r\n|\r|\n/);
 			dataNode = {
-				name: `${descriptors[rand1]} ${places[rand2]}`,
+				name: `${sample(descriptors)} ${sample(places)}`,
 				price: faker.commerce.price(),
 				description: faker.lorem.sentences({ min: 2, max: 6 }),
-				location: `${location[2]}, ${location[3]}`,
+				location: `${location[location.length - 3]}, ${location[location.length - 2]}`,
 			};
 
 			seedData.push(dataNode);

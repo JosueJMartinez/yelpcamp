@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const { states } = require('./seeds/seedHelpers');
 
 mongoose
 	.connect('mongodb://localhost:27017/yelpCampApp')
@@ -39,12 +40,75 @@ app.get('/campgrounds', async (req, res) => {
 	res.render('./campgrounds/', { page: 'Campgrounds', campgrounds });
 });
 
+app.get('/campgrounds/create', async (req, res) => {
+	res.render('./campgrounds/create', { page: 'Campground Create', states });
+});
+
+app.post('/campgrounds', async (req, res) => {
+	const { name, price, description, city, state } = req.body;
+	try {
+		const checkDup = await Campground.findOne({ name });
+		// console.log(checkDup);
+		if (!checkDup) await Campground.create({ name, price, description, location: `${city}, ${state}` });
+	} catch (e) {
+		console.log(e);
+	}
+	res.redirect('/campgrounds');
+});
+
 app.get('/campgrounds/:id', async (req, res) => {
 	const { id } = req.params;
 	try {
 		const campground = await Campground.findById(id);
 		if (!campground) return res.redirect('/campgrounds');
 		res.render('./campgrounds/campground', { page: `Campground ${campground.name}`, campground });
+	} catch (e) {
+		res.redirect('/campgrounds');
+	}
+});
+
+app.get('/campgrounds/:id/edit', async (req, res) => {
+	const { id } = req.params;
+	try {
+		let campground = await Campground.findById(id);
+		if (!campground) return res.redirect(`/campgrounds`);
+		const [city, state] = campground.location.split(', ');
+		campground.city = city;
+		campground.state = state;
+		console.log(campground);
+		res.render(`./campgrounds/edit.ejs`, { page: `Edit ${campground.name}`, city, state, campground, states });
+	} catch (e) {
+		console.log(e);
+		res.redirect('/campgrounds');
+	}
+});
+
+app.patch('/campgrounds/:id', async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		let updatedCG = req.body;
+		updatedCG.location = `${updatedCG.city}, ${updatedCG.state}`;
+		const campground = await Campground.findByIdAndUpdate(id, updatedCG);
+		if (!campground) return res.redirect(`/campgrounds`);
+		res.redirect(`/campgrounds/${id}`);
+	} catch (e) {
+		console.log('failed');
+		console.log(e);
+		res.redirect(`/campgrounds`);
+	}
+});
+
+app.delete('/campgrounds/:id', async (req, res) => {
+	const { id } = req.params;
+	try {
+		const cg = await Campground.findByIdAndDelete(id);
+		console.log(cg);
+		if (!cg) return res.redirect('/campgrounds');
+		else {
+			Campground.findByIdAndDelete;
+			res.redirect('/campgrounds');
+		}
 	} catch (e) {
 		res.redirect('/campgrounds');
 	}

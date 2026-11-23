@@ -50,11 +50,15 @@ app.post('/campgrounds', async (req, res) => {
 	try {
 		const checkDup = await Campground.findOne({ name });
 		// console.log(checkDup);
-		if (!checkDup) await Campground.create({ name, price, description, location: `${city}, ${state}` });
+		if (!checkDup) {
+			const newCampground = await Campground.create({ name, price, description, location: `${city}, ${state}` });
+			// console.log(newCampground);
+			res.redirect(`./campgrounds/${newCampground.id}`);
+		}
 	} catch (e) {
 		console.log(e);
+		return res.redirect('/campgrounds');
 	}
-	res.redirect('/campgrounds');
 });
 
 app.get('/campgrounds/:id', async (req, res) => {

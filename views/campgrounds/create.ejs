@@ -1,6 +1,6 @@
 <%- include('../partials/header', { page }) %>
 <%- include('../partials/navbar') %>
-<div class="container">
+<section class="container">
   <h1><%- page %> page</h1>
   <div>
     <form action="/campgrounds" method="POST">
@@ -33,4 +33,5 @@
       <button type="submit" class="btn btn-primary">Create</button>
     </form>
   </div>
-  <%- include('../partials/footer') %>
+</section>
+<%- include('../partials/footer') %>

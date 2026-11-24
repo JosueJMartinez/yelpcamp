@@ -81,7 +81,7 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
 		campground.city = city;
 		campground.state = state;
 		console.log(campground);
-		res.render(`./campgrounds/edit.ejs`, { page: `Edit ${campground.name}`, city, state, campground, states });
+		res.render(`./campgrounds/edit`, { page: `Edit ${campground.name}`, city, state, campground, states });
 	} catch (e) {
 		console.log(e);
 		res.redirect('/campgrounds');

@@ -1,6 +1,6 @@
 <%- include('../partials/header', { page }) %>
 <%- include('../partials/navbar') %>
-<div class="container">
+<section class="container">
   <h1>Edit Campground </h1>
   <div>
     <h1>Update campground: <%= campground.name %></h1>
@@ -27,9 +27,10 @@
           </select>
         </div>
       </div>
+      <a class="btn btn-danger" href=<%=  `/campgrounds/${campground.id}` %> role="button">Cancel</a>
       <button type="submit" class="btn btn-primary">Update</button>
     </form>
   </div>
-</div>
+</section>
 
 <%- include('../partials/footer') %>

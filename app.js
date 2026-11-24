@@ -3,6 +3,7 @@ const path = require('path');
 const { parsed } = require('dotenv').config();
 const mongoose = require('mongoose');
 const { states } = require('./seeds/seedHelpers');
+const morgan = require('morgan');
 
 mongoose
 	.connect(parsed.MONGODB_URI)
@@ -24,6 +25,7 @@ app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstra
 // set up body parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(morgan('tiny'));
 
 // set up ejs views
 app.set('view engine', 'ejs');

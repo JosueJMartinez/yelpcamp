@@ -92,9 +92,7 @@ app.patch('/campgrounds/:id', async (req, res) => {
 	const { id } = req.params;
 
 	try {
-		let updatedCG = req.body;
-		updatedCG.location = `${updatedCG.city}, ${updatedCG.state}`;
-		const campground = await Campground.findByIdAndUpdate(id, updatedCG);
+		const campground = await Campground.findByIdAndUpdate(id, { ...req.body, location: `${req.body.city}, ${req.body.state}` });
 		if (!campground) return res.redirect(`/campgrounds`);
 		res.redirect(`/campgrounds/${id}`);
 	} catch (e) {

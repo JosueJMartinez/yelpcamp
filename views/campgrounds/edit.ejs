@@ -22,8 +22,8 @@
           <select class="form-select" id="state" name="state" aria-label="Default select example">
             <option selected>Select A State</option>
             <% states.forEach(state=>{ %>
-            <option value=<%= `${state.name}` %> <%= state.name == campground.state ? 'selected':'' %>><%= `${state.name}` %></option>
-            <% }) %>
+              <option value=<%= `${state.name}` %> <%= state.name == campground.state ? 'selected':'' %>><%= `${state.name}` %></option>
+            <% }); %>
           </select>
         </div>
       </div>

@@ -22,6 +22,16 @@ const CampSchema = new Schema({
 		required: true,
 		// lowercase: true,
 	},
+	imgSm: {
+		type: String,
+		// required: true,
+		// lowercase: true,
+	},
+	imgLg: {
+		type: String,
+		// required: true,
+		// lowercase: true,
+	},
 });
 
 module.exports = mongoose.model('Campground', CampSchema);

@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
           <label for="description">Description: </label>
-          <input type="text" class="form-control" id="description" name="description" value="<%= campground.description %>" required>
+          <textarea class="form-control" id="description" name="description" rows="3"><%= campground.description %></textarea>
         </div>
         <div class="mb-3">
           <label for="city">City: </label>
@@ -22,7 +22,7 @@
           <select class="form-select" id="state" name="state" aria-label="Default select example">
             <option selected>Select A State</option>
             <% states.forEach(state=>{ %>
-              <option value=<%= `${state.name}` %> <%= state.name == campground.state ? 'selected':'' %>><%= `${state.name}` %></option>
+            <option value=<%= `${state.name}` %> <%= state.name == campground.state ? 'selected':'' %>><%= `${state.name}` %></option>
             <% }); %>
           </select>
         </div>

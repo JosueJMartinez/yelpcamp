@@ -78,10 +78,8 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
 		let campground = await Campground.findById(id);
 		if (!campground) return res.redirect(`/campgrounds`);
 		const [city, state] = campground.location.split(', ');
-		campground.city = city;
-		campground.state = state;
-		console.log(campground);
-		res.render(`./campgrounds/edit`, { page: `Edit ${campground.name}`, city, state, campground, states });
+		campground = { ...campground.toObject(), city, state };
+		res.render(`./campgrounds/edit`, { page: `Edit ${campground.name}`, campground, states });
 	} catch (e) {
 		console.log(e);
 		res.redirect('/campgrounds');
@@ -106,7 +104,7 @@ app.delete('/campgrounds/:id', async (req, res) => {
 	const { id } = req.params;
 	try {
 		const cg = await Campground.findByIdAndDelete(id);
-		console.log(cg);
+		// console.log(cg);
 		if (!cg) return res.redirect('/campgrounds');
 		else {
 			Campground.findByIdAndDelete;

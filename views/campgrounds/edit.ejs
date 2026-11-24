@@ -16,13 +16,13 @@
         </div>
         <div class="mb-3">
           <label for="city">City: </label>
-          <input type="text" class="form-control" id="city" name="city" value="<%= city %>" required>
+          <input type="text" class="form-control" id="city" name="city" value="<%= campground.city %>" required>
         </div>
         <div class="mb-3">
           <select class="form-select" id="state" name="state" aria-label="Default select example">
             <option selected>Select A State</option>
-            <% states.forEach(s=>{ %>
-            <option value=<%= `${s.name}` %> <%= s.name == state ? 'selected':'' %>><%= `${s.name}` %></option>
+            <% states.forEach(state=>{ %>
+            <option value=<%= `${state.name}` %> <%= state.name == campground.state ? 'selected':'' %>><%= `${state.name}` %></option>
             <% }) %>
           </select>
         </div>

@@ -1,35 +1,41 @@
 <% layout('layouts/boilerplate') %>
 <!-- <section class="container"> -->
-<h1><%- page %> page</h1>
-<div>
-  <form action="/campgrounds" method="POST">
-    <div class="form-group">
-      <div class="mb-3">
-        <label for="name">Name: </label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
-      </div>
-      <div class="mb-3">
-        <label for="price">Price: </label>
-        <input type="text" class="form-control" id="price" name="price" placeholder="Enter a price" required>
-      </div>
-      <div class="mb-3">
-        <label for="description">Description: </label>
-        <textarea class="form-control" id="description" name="description" placeholder="Enter a description" rows="3"></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="city">City: </label>
-        <input type="text" class="form-control" id="city" name="city" placeholder="Enter a city" required>
-      </div>
-      <div class="mb-3">
-        <select class="form-select" id="state" name="state" aria-label="Default select example">
-          <option selected>Select A State</option>
-          <% states.forEach(state=>{ %>
-          <option value=<%= `${state.name}` %>><%= `${state.name}` %></option>
-          <% }) %>
-        </select>
-      </div>
+<div class="row">
+  <h1 class="text-center"><%- page %> page</h1>
+  <div class="col-6 offset-3">
+
+
+    <div>
+      <form action="/campgrounds" method="POST">
+        <div class="form-group">
+          <div class="mb-3">
+            <label for="name">Name: </label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
+          </div>
+          <div class="mb-3">
+            <label for="price">Price: </label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="Enter a price" required>
+          </div>
+          <div class="mb-3">
+            <label for="description">Description: </label>
+            <textarea class="form-control" id="description" name="description" placeholder="Enter a description" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="city">City: </label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Enter a city" required>
+          </div>
+          <div class="mb-3">
+            <select class="form-select" id="state" name="state" aria-label="Default select example">
+              <option selected>Select A State</option>
+              <% states.forEach(state=>{ %>
+              <option value=<%= `${state.name}` %>><%= `${state.name}` %></option>
+              <% }) %>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-  </form>
+  </div>
 </div>
 <!-- </section> -->

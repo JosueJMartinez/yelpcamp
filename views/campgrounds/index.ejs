@@ -1,5 +1,4 @@
-<%- include('../partials/header', { page }) %>
-<%- include('../partials/navbar') %>
+<% layout('layouts/boilerplate') %>
 <section class="container">
   <h1><%- page %> page</h1>
   <a class="btn btn-primary" href='/campgrounds/create' role="button">Create Campground</a>
@@ -13,11 +12,9 @@
             <img src=<%= `${campgrounds[j].imgSm}` %> class="card-img-top" alt="...">
             <div class="card-body">
               <h4 class="card-title"><%= campgrounds[j].name %></h4>
-              <!-- <p class="card-text"><%= campgrounds[j].description %></p> -->
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">$<%= campgrounds[j].price %></li>
-              <li class="list-group-item"><%= campgrounds[j].location %></li>
+              <li class="list-group-item"><%= campgrounds[j].location %><span class="float-end">$<%= campgrounds[j].price %></span></li>
             </ul>
           </a>
         </div>
@@ -27,4 +24,3 @@
     </div>
   </div>
 </section>
-<%- include('../partials/footer') %>

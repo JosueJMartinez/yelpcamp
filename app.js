@@ -4,6 +4,7 @@ const { parsed } = require('dotenv').config();
 const mongoose = require('mongoose');
 const { states } = require('./seeds/seedHelpers');
 const morgan = require('morgan');
+const engine = require('ejs-mate');
 
 mongoose
 	.connect(parsed.MONGODB_URI)
@@ -16,6 +17,8 @@ mongoose
 	});
 
 const app = express();
+app.engine('ejs', engine);
+
 const methodOverride = require('method-override');
 
 app.use(methodOverride('_method'));
@@ -25,7 +28,7 @@ app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstra
 // set up body parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 
 // set up ejs views
 app.set('view engine', 'ejs');

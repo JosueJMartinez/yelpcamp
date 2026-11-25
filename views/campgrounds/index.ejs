@@ -5,11 +5,11 @@
 <div>
   <div class="mt-5">
     <% for(let i=0; i< 18; i=i+3 ){%>
-    <div class="row mb-5">
+    <div class="row">
       <% for(let j=i; j<i+3 && j<18 ;j++){ %>
-      <div class="col">
+      <div class="col-md-4 mb-5">
         <a href=<%=`/campgrounds/${campgrounds[j].id}` %> class="card h-100 link-underline link-underline-opacity-0">
-          <img src=<%= `${campgrounds[j].imgSm}` %> class="card-img-top" alt="...">
+          <img src=<%= `${campgrounds[j].imgSm}` %> class="card-img-top" alt="<%= campgrounds[j].name %>">
           <div class="card-body">
             <h4 class="card-title"><%= campgrounds[j].name %></h4>
           </div>

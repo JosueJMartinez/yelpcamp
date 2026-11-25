@@ -1,26 +1,25 @@
 <% layout('layouts/boilerplate') %>
-<section class="container">
-  <h1><%- page %> page</h1>
-  <a class="btn btn-primary" href='/campgrounds/create' role="button">Create Campground</a>
-  <div>
-    <div class="mt-5">
-      <% for(let i=0; i< 18; i=i+3 ){%>
-      <div class="row mb-5">
-        <% for(let j=i; j<i+3 && j<18 ;j++){ %>
-        <div class="col">
-          <a href=<%=`/campgrounds/${campgrounds[j].id}` %> class="card h-100">
-            <img src=<%= `${campgrounds[j].imgSm}` %> class="card-img-top" alt="...">
-            <div class="card-body">
-              <h4 class="card-title"><%= campgrounds[j].name %></h4>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><%= campgrounds[j].location %><span class="float-end">$<%= campgrounds[j].price %></span></li>
-            </ul>
-          </a>
-        </div>
-        <% } %>
+
+<h1><%- page %> page</h1>
+<a class="btn btn-primary" href='/campgrounds/create' role="button">Create Campground</a>
+<div>
+  <div class="mt-5">
+    <% for(let i=0; i< 18; i=i+3 ){%>
+    <div class="row mb-5">
+      <% for(let j=i; j<i+3 && j<18 ;j++){ %>
+      <div class="col">
+        <a href=<%=`/campgrounds/${campgrounds[j].id}` %> class="card h-100 link-underline link-underline-opacity-0">
+          <img src=<%= `${campgrounds[j].imgSm}` %> class="card-img-top" alt="...">
+          <div class="card-body">
+            <h4 class="card-title"><%= campgrounds[j].name %></h4>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= campgrounds[j].location %><span class="float-end">$<%= campgrounds[j].price %></span></li>
+          </ul>
+        </a>
       </div>
       <% } %>
     </div>
+    <% } %>
   </div>
-</section>
+</div>
